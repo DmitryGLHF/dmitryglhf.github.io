@@ -4,7 +4,9 @@ import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Brain, Code, Database, Download, Mail, User } from "lucide-react";
+import { Brain, Code, Database, Download, Mail, Phone, MessageSquare } from "lucide-react";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 const Index = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -42,11 +44,11 @@ const Index = () => {
             <button onClick={() => scrollToSection('about')} className="text-sm hover:text-primary transition-colors">
               About
             </button>
-            <button onClick={() => scrollToSection('projects')} className="text-sm hover:text-primary transition-colors">
-              Projects
-            </button>
             <button onClick={() => scrollToSection('skills')} className="text-sm hover:text-primary transition-colors">
               Skills
+            </button>
+            <button onClick={() => scrollToSection('projects')} className="text-sm hover:text-primary transition-colors">
+              Projects
             </button>
             <button onClick={() => scrollToSection('contact')} className="text-sm hover:text-primary transition-colors">
               Contact
@@ -176,35 +178,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-background/50">
-        <div className="container max-w-4xl">
-          <h2 className="text-3xl font-bold mb-8 gradient-text">Projects</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="p-6 bg-secondary/50 backdrop-blur hover:bg-secondary/60 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Project 1</h3>
-              <p className="text-muted-foreground mb-4">
-                Description of project 1. Explain the problem solved and technologies used.
-              </p>
-              <div className="flex gap-2">
-                <Button variant="outline" size="sm">Demo</Button>
-                <Button variant="outline" size="sm">Code</Button>
-              </div>
-            </Card>
-            <Card className="p-6 bg-secondary/50 backdrop-blur hover:bg-secondary/60 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Project 2</h3>
-              <p className="text-muted-foreground mb-4">
-                Description of project 2. Explain the problem solved and technologies used.
-              </p>
-              <div className="flex gap-2">
-                <Button variant="outline" size="sm">Demo</Button>
-                <Button variant="outline" size="sm">Code</Button>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Skills Section */}
       <section id="skills" className="py-20 px-4 bg-secondary/20">
         <div className="container max-w-4xl">
@@ -229,19 +202,11 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Projects Section */}
+      <ProjectsSection />
+
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
-        <div className="container max-w-4xl text-center">
-          <h2 className="text-3xl font-bold mb-8 gradient-text">Get in Touch</h2>
-          <Card className="p-8 bg-secondary/50 backdrop-blur inline-block">
-            <Mail className="w-12 h-12 mb-4 text-primary mx-auto" />
-            <p className="text-xl mb-6">Interested in working together?</p>
-            <Button size="lg">
-              Contact Me
-            </Button>
-          </Card>
-        </div>
-      </section>
+      <ContactSection />
     </div>
   );
 };
