@@ -4,7 +4,7 @@ import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Brain, Code, Database, Mail, User } from "lucide-react";
+import { Brain, Code, Database, Download, Mail, User } from "lucide-react";
 
 const Index = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -14,6 +14,17 @@ const Index = () => {
   const particlesLoaded = useCallback(async (_container: Container | undefined) => {
     // Removed console.log that was causing circular JSON structure error
   }, []);
+
+  const handleDownloadCV = () => {
+    // Replace this URL with your actual CV PDF URL
+    const cvUrl = "/path-to-your-cv.pdf";
+    const link = document.createElement("a");
+    link.href = cvUrl;
+    link.download = "cv.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -45,10 +56,10 @@ const Index = () => {
           },
           particles: {
             color: {
-              value: "#9b87f5",
+              value: "#0EA5E9",
             },
             links: {
-              color: "#9b87f5",
+              color: "#0EA5E9",
               distance: 150,
               enable: true,
               opacity: 0.5,
@@ -103,22 +114,42 @@ const Index = () => {
       <section className="py-20 px-4">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 gradient-text">About Me</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card className="p-6 bg-secondary/50 backdrop-blur">
-              <User className="w-12 h-12 mb-4 text-primary" />
-              <h3 className="text-xl font-semibold mb-2">Background</h3>
-              <p className="text-muted-foreground">
-                Experienced ML engineer specializing in deep learning and computer vision
-              </p>
-            </Card>
-            <Card className="p-6 bg-secondary/50 backdrop-blur">
-              <Brain className="w-12 h-12 mb-4 text-primary" />
-              <h3 className="text-xl font-semibold mb-2">Expertise</h3>
-              <p className="text-muted-foreground">
-                Neural networks, NLP, and deployment of ML models at scale
-              </p>
-            </Card>
-          </div>
+          <Card className="p-6 bg-secondary/50 backdrop-blur">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="md:col-span-1">
+                <div className="aspect-square rounded-lg bg-blue-900/20 mb-4 overflow-hidden">
+                  {/* Replace src with your actual photo */}
+                  <img
+                    src="/placeholder.svg"
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <Button 
+                  onClick={handleDownloadCV}
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  Download CV
+                </Button>
+              </div>
+              <div className="md:col-span-2">
+                <h3 className="text-xl font-semibold mb-4">Background</h3>
+                <p className="text-muted-foreground mb-4">
+                  Experienced Machine Learning Engineer with a strong foundation in deep learning
+                  and computer vision. Passionate about developing AI solutions that make a real
+                  impact. Specialized in building and deploying scalable machine learning models
+                  for complex real-world problems.
+                </p>
+                <p className="text-muted-foreground">
+                  With over [X] years of experience in the field, I've worked on projects ranging
+                  from computer vision applications to natural language processing systems.
+                  My expertise includes developing end-to-end ML pipelines, optimizing model
+                  performance, and implementing MLOps practices.
+                </p>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
