@@ -2,9 +2,7 @@ import { useCallback } from "react";
 import Particles from "react-particles";
 import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Brain, Code, Database, Download, Mail, Phone, MessageSquare } from "lucide-react";
+import { HeroSection } from "@/components/sections/HeroSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
@@ -16,16 +14,6 @@ const Index = () => {
   const particlesLoaded = useCallback(async (_container: Container | undefined) => {
     // Intentionally empty to avoid circular JSON structure error
   }, []);
-
-  const handleDownloadCV = () => {
-    const cvUrl = "/path-to-your-cv.pdf";
-    const link = document.createElement("a");
-    link.href = cvUrl;
-    link.download = "cv.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -124,18 +112,8 @@ const Index = () => {
         }}
       />
 
-      {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center px-4 pt-16">
-        <div className="text-center animate-fade-up">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-            Machine Learning Engineer
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-            Building intelligent solutions for complex problems
-          </p>
-        </div>
-      </section>
-
+      <HeroSection />
+      
       {/* About Section */}
       <section id="about" className="py-20 px-4">
         <div className="container max-w-4xl">
