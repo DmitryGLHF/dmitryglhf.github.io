@@ -12,11 +12,10 @@ const Index = () => {
   }, []);
 
   const particlesLoaded = useCallback(async (_container: Container | undefined) => {
-    // Removed console.log that was causing circular JSON structure error
+    // Intentionally empty to avoid circular JSON structure error
   }, []);
 
   const handleDownloadCV = () => {
-    // Replace this URL with your actual CV PDF URL
     const cvUrl = "/path-to-your-cv.pdf";
     const link = document.createElement("a");
     link.href = cvUrl;
@@ -26,8 +25,36 @@ const Index = () => {
     document.body.removeChild(link);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Navigation Panel */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/40">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center h-16 space-x-8">
+            <button onClick={() => scrollToSection('hero')} className="text-sm hover:text-primary transition-colors">
+              Home
+            </button>
+            <button onClick={() => scrollToSection('about')} className="text-sm hover:text-primary transition-colors">
+              About
+            </button>
+            <button onClick={() => scrollToSection('projects')} className="text-sm hover:text-primary transition-colors">
+              Projects
+            </button>
+            <button onClick={() => scrollToSection('skills')} className="text-sm hover:text-primary transition-colors">
+              Skills
+            </button>
+            <button onClick={() => scrollToSection('contact')} className="text-sm hover:text-primary transition-colors">
+              Contact
+            </button>
+          </div>
+        </div>
+      </nav>
+
       <Particles
         className="absolute inset-0 -z-10"
         id="tsparticles"
@@ -56,10 +83,10 @@ const Index = () => {
           },
           particles: {
             color: {
-              value: "#0EA5E9",
+              value: "#333333",
             },
             links: {
-              color: "#0EA5E9",
+              color: "#333333",
               distance: 150,
               enable: true,
               opacity: 0.5,
@@ -96,7 +123,7 @@ const Index = () => {
       />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4">
+      <section id="hero" className="min-h-screen flex items-center justify-center px-4 pt-16">
         <div className="text-center animate-fade-up">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
             Machine Learning Engineer
@@ -104,21 +131,17 @@ const Index = () => {
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
             Building intelligent solutions for complex problems
           </p>
-          <Button className="text-lg px-8 py-6" size="lg">
-            View Projects
-          </Button>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4">
+      <section id="about" className="py-20 px-4">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 gradient-text">About Me</h2>
           <Card className="p-6 bg-secondary/50 backdrop-blur">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="md:col-span-1">
-                <div className="aspect-square rounded-lg bg-blue-900/20 mb-4 overflow-hidden">
-                  {/* Replace src with your actual photo */}
+                <div className="aspect-square rounded-lg bg-background/20 mb-4 overflow-hidden">
                   <img
                     src="/placeholder.svg"
                     alt="Profile"
@@ -127,7 +150,7 @@ const Index = () => {
                 </div>
                 <Button 
                   onClick={handleDownloadCV}
-                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  className="w-full bg-primary/80 hover:bg-primary"
                 >
                   <Download className="mr-2 h-4 w-4" />
                   Download CV
@@ -153,8 +176,37 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-4 bg-background/50">
+        <div className="container max-w-4xl">
+          <h2 className="text-3xl font-bold mb-8 gradient-text">Projects</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="p-6 bg-secondary/50 backdrop-blur hover:bg-secondary/60 transition-colors">
+              <h3 className="text-xl font-semibold mb-4">Project 1</h3>
+              <p className="text-muted-foreground mb-4">
+                Description of project 1. Explain the problem solved and technologies used.
+              </p>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm">Demo</Button>
+                <Button variant="outline" size="sm">Code</Button>
+              </div>
+            </Card>
+            <Card className="p-6 bg-secondary/50 backdrop-blur hover:bg-secondary/60 transition-colors">
+              <h3 className="text-xl font-semibold mb-4">Project 2</h3>
+              <p className="text-muted-foreground mb-4">
+                Description of project 2. Explain the problem solved and technologies used.
+              </p>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm">Demo</Button>
+                <Button variant="outline" size="sm">Code</Button>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
-      <section className="py-20 px-4 bg-secondary/20">
+      <section id="skills" className="py-20 px-4 bg-secondary/20">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 gradient-text">Skills</h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -178,7 +230,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 px-4">
+      <section id="contact" className="py-20 px-4">
         <div className="container max-w-4xl text-center">
           <h2 className="text-3xl font-bold mb-8 gradient-text">Get in Touch</h2>
           <Card className="p-8 bg-secondary/50 backdrop-blur inline-block">
