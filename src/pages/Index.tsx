@@ -5,6 +5,9 @@ import { loadFull } from "tsparticles";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Brain, Code, Database, Download } from "lucide-react";
 
 const Index = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -18,6 +21,11 @@ const Index = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleDownloadCV = () => {
+    // You can implement the CV download logic here
+    console.log("Downloading CV...");
   };
 
   return (
@@ -180,10 +188,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
       <ProjectsSection />
-
-      {/* Contact Section */}
       <ContactSection />
     </div>
   );
