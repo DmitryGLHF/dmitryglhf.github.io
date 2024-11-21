@@ -11,8 +11,8 @@ const Index = () => {
     await loadFull(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    console.log(container);
+  const particlesLoaded = useCallback(async (_container: Container | undefined) => {
+    // Removed console.log that was causing circular JSON structure error
   }, []);
 
   return (
