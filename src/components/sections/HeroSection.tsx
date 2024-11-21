@@ -1,14 +1,33 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import { Moon, Sun } from "lucide-react";
 
 export const HeroSection = () => {
+  const { theme, setTheme } = useTheme();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 pt-16 relative">
+    <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 pt-16 relative bg-gradient-to-b from-background via-background/80 to-background">
+      {/* Theme Toggle Button */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="fixed top-4 right-4 rounded-full"
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      >
+        {theme === 'dark' ? (
+          <Sun className="h-5 w-5" />
+        ) : (
+          <Moon className="h-5 w-5" />
+        )}
+      </Button>
+
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -16,35 +35,27 @@ export const HeroSection = () => {
         className="text-center"
       >
         <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-          Machine Learning Engineer
+          Creative Developer
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-          Building intelligent solutions for complex problems
+          Crafting beautiful and functional web experiences
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12 max-w-2xl mx-auto">
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="p-6 bg-secondary/20 rounded-lg backdrop-blur-sm"
+            className="w-full md:w-1/2 p-6 bg-card/50 rounded-lg backdrop-blur-sm border border-border/50 shadow-lg"
           >
-            <h3 className="text-xl font-semibold mb-2">AI Solutions</h3>
-            <p className="text-muted-foreground">Developing cutting-edge artificial intelligence applications</p>
+            <h3 className="text-xl font-semibold mb-2">Web Development</h3>
+            <p className="text-muted-foreground">Building modern and responsive web applications</p>
           </motion.div>
           
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="p-6 bg-secondary/20 rounded-lg backdrop-blur-sm"
+            className="w-full md:w-1/2 p-6 bg-card/50 rounded-lg backdrop-blur-sm border border-border/50 shadow-lg"
           >
-            <h3 className="text-xl font-semibold mb-2">Deep Learning</h3>
-            <p className="text-muted-foreground">Implementing neural networks for complex tasks</p>
-          </motion.div>
-          
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="p-6 bg-secondary/20 rounded-lg backdrop-blur-sm"
-          >
-            <h3 className="text-xl font-semibold mb-2">Data Science</h3>
-            <p className="text-muted-foreground">Transforming data into actionable insights</p>
+            <h3 className="text-xl font-semibold mb-2">UI/UX Design</h3>
+            <p className="text-muted-foreground">Creating intuitive and engaging user experiences</p>
           </motion.div>
         </div>
       </motion.div>
