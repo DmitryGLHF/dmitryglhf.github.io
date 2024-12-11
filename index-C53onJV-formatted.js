@@ -22696,7 +22696,7 @@ const s2 = () => {
                             children: [C.jsx("div", {
                                 className: "aspect-square rounded-lg bg-background/20 mb-4 overflow-hidden",
                                 children: C.jsx("img", {
-                                    src: "/placeholder.svg",
+                                    src: "/src/img/me.jpeg",
                                     alt: "Profile",
                                     className: "w-full h-full object-cover"
                                 })
