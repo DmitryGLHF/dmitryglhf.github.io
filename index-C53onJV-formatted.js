@@ -22714,7 +22714,7 @@ const s2 = () => {
                                 children: "Background"
                             }), C.jsx("p", {
                                 className: "text-muted-foreground mb-4",
-                                children: "Junior Machine Learning Engineer with a foundation in machine learning and deep learning with civil-engineering experience. Passionate about developing AI solutions that make a real impact."
+                                children: "Junior Machine Learning Engineer."
                             }), C.jsx("p", {
                                 className: "text-muted-foreground",
                                 children: "With 2 years of experience in the field as ITMO University master student, I've worked on projects ranging from research to computer vision applications. My expertise includes developing python frameworks, optimizing model performance and implementing MLOps practices."
